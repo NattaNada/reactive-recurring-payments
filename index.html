@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recurring Payments — Reactive (Track B)</title>
+    <script type="module" crossorigin src="/reactive-recurring-payments/assets/index-SVy8waQq.js"></script>
+    <link rel="stylesheet" crossorigin href="/reactive-recurring-payments/assets/index-C_kUdaOV.css">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Recurring Payments, on autopilot</h1>
+        <p>
+          A Reactive Smart Contract pays a fixed amount on a schedule you set
+          once — no bot, no keeper, no server. Built for the Reactive Omni
+          Buildathon, Track B — “Set It and Forget It”.
+        </p>
+        <p id="deploy-banner" class="banner">
+          ⚠️ Contracts are not deployed yet. Status below shows placeholders
+          until deployment — see the project README.
+        </p>
+      </header>
+
+      <main>
+        <section>
+          <h2>1 · Your schedule</h2>
+          <form id="config-form">
+            <label>
+              Beneficiary (receives each payment)
+              <input id="beneficiary" type="text" placeholder="0x..." required />
+            </label>
+            <label>
+              Amount per payment (ETH on Base Sepolia)
+              <input id="amount" type="number" step="0.001" min="0" value="0.01" required />
+            </label>
+            <label>
+              Interval
+              <select id="interval">
+                <option value="600">Every 10 minutes (demo)</option>
+                <option value="86400" selected>Daily</option>
+                <option value="604800">Weekly</option>
+                <option value="2592000">Monthly (30 days)</option>
+              </select>
+            </label>
+            <button type="submit" id="save-btn" disabled>
+              Save schedule
+            </button>
+            <p class="hint">
+              Saving writes to the RSC on Lasna via your connected wallet
+              (owner only). Only values that changed are sent, one
+              transaction each.
+            </p>
+          </form>
+        </section>
+
+        <section>
+          <h2>2 · Contract status (read-only)</h2>
+          <dl id="status">
+            <dt>RSC (Lasna)</dt>
+            <dd><a id="rsc-link" href="#" target="_blank" rel="noreferrer">not deployed</a></dd>
+            <dt>RSC balance (lREACT)</dt>
+            <dd id="rsc-balance">—</dd>
+            <dt>RSC debt (lREACT)</dt>
+            <dd id="rsc-debt">—</dd>
+            <dt>RSC reserves (lREACT)</dt>
+            <dd id="rsc-reserves">—</dd>
+            <dt>Payments requested</dt>
+            <dd id="rsc-payments">—</dd>
+            <dt>Next payment</dt>
+            <dd id="rsc-next">—</dd>
+            <dt>Callback (Base Sepolia)</dt>
+            <dd><a id="cb-link" href="#" target="_blank" rel="noreferrer">not deployed</a></dd>
+            <dt>Callback balance (ETH)</dt>
+            <dd id="cb-balance">—</dd>
+            <dt>Payments executed</dt>
+            <dd id="cb-payments">—</dd>
+            <dt>Total paid (ETH)</dt>
+            <dd id="cb-total">—</dd>
+          </dl>
+          <button id="refresh-btn" type="button">Refresh status</button>
+        </section>
+
+        <section>
+          <h2>3 · Fund the contracts</h2>
+          <p>
+            The RSC pays for its reactive transactions in lREACT; the
+            callback contract pays for callback execution in ETH and holds
+            the payment funds. Both need a balance before the first payment.
+          </p>
+          <button id="fund-rsc-btn" type="button" disabled>
+            Fund RSC with lREACT
+          </button>
+          <button id="fund-cb-btn" type="button" disabled>
+            Fund callback with ETH
+          </button>
+          <p class="hint">
+            Funding uses <code>depositTo()</code> on the system contract /
+            callback proxy so the money becomes spendable reserves. See
+            README.md “Funding”.
+          </p>
+        </section>
+
+        <section>
+          <h2>4 · Wallet</h2>
+          <button id="connect-btn" type="button">Connect wallet</button>
+          <span id="wallet-status">Not connected — connection is explicit and manual.</span>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Reactive Omni Buildathon · Track B · Deadline 6 Dec 2026 03:00 WIB ·
+          Repo: <a href="https://github.com/NattaNada/reactive-recurring-payments">github.com/NattaNada/reactive-recurring-payments</a>
+          · RSC: <a href="https://lasna.reactscan.net/address/0xE14884a4Db5c97B3ab8d3C4430d6f3aD085E1346">0xE14884…1346</a>
+          · Callback: <a href="https://sepolia.basescan.org/address/0x995b75ef4B84E346Dc2fDC73f60554469f24eb9E">0x995b75…eb9E</a>
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

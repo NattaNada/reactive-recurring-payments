@@ -129,3 +129,49 @@ On-chain counters after the payment (checked 05:01–05:02 UTC):
 - Sepolia: `449999999999136000` wei (~0.45 ETH) → ~0.35 ETH after faucet send + gas
 - Base Sepolia: `149999495999999630` wei (~0.15 ETH) → ~0.0999959 ETH after callback funding + deploy gas
 - Lasna: `0` lREACT → 10 lREACT via faucet → ~5.34 lREACT after RSC funding (2), reserves deposit (3), and gas
+
+## Step 5a — Frontend (20 Nov 2026)
+
+- `frontend/src/main.ts` filled with the deployed addresses; config form,
+  status panel, and fund buttons wired to real on-chain writes (owner-only
+  RSC setters on Lasna, `depositTo()` funding on both chains). Wallet
+  connect stays explicit/manual — no auto-connect.
+- `frontend/vite.config.ts` added with `base: "/reactive-recurring-payments/"`
+  so assets load under the project Pages URL.
+- `npm run build` ✅ (`tsc` + Vite; output `frontend/dist/`, ~348 KB).
+- Deployed to the **`gh-pages` branch** (commit
+  `458dcdf30cc8a3e2cdd55f23d51a36694992a771`, 6 files) for GitHub Pages:
+  https://nattanada.github.io/reactive-recurring-payments/
+- **Pages not yet enabled:** the URL returned 404 when checked — GitHub
+  Pages must be enabled once in repo Settings → Pages → Source: Deploy
+  from a branch → `gh-pages`. The branch and files are already in place;
+  enabling is a one-click user step (the MCP connector cannot change repo
+  settings).
+
+## Step 5b — Callback top-up (20 Nov 2026, ~05:07 UTC)
+
+The demo keeps paying 0.01 ETH every 10 minutes, and the callback only
+held ~0.04 ETH (4 payments). Topped up **+0.05 Base Sepolia ETH** from the
+burner (plain transfer to the callback's `receive()`):
+
+- Tx (Base Sepolia): `0xaa1a74d5bde2986958f45aeeca407bcbdd97d0e83e2c44e6b210c4970ac932fc`
+  (block 61147015, status 1) —
+  https://sepolia.basescan.org/tx/0xaa1a74d5bde2986958f45aeeca407bcbdd97d0e83e2c44e6b210c4970ac932fc
+- Callback balance after: `89999060021400000` wei (**~0.09 ETH = 9 payments**)
+- Burner Base Sepolia balance after: `59995780439997054` wei (~0.06 ETH)
+- Counters at top-up time: `paymentsExecuted` 1, `totalPaid` 0.01 ETH,
+  RSC `paymentsRequested` 1, `nextPaymentAt` `1795151438` (05:10:38 UTC),
+  RSC debt 0.
+
+## Step 5c + 6 — Video script + submission draft (20 Nov 2026)
+
+- [VIDEO_SCRIPT.md](VIDEO_SCRIPT.md): shot list with per-shot durations,
+  total 2:55 (< 3 min), live screen-recording with voiceover, all links to
+  open while recording. **Video must be recorded manually by the user —
+  video generation is unavailable for this account.**
+- [SUBMISSION_DRAFT.md](SUBMISSION_DRAFT.md): title, short (≤500 chars) +
+  long description, Track B, all links, execution proof, submission
+  checklist. **Draft only — nothing submitted to DoraHacks.**
+- Remaining before submit: enable GitHub Pages (one click, see 5a) →
+  record the video → paste the video link into the draft → user approves
+  the final text → submit on DoraHacks before 6 Dec 2026 03:00 WIB.

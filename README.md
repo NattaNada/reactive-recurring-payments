@@ -7,7 +7,7 @@ server, no off-chain automation.
 - **Buildathon:** [Reactive Omni Buildathon](https://dorahacks.io/hackathon/reactive-omni-buildathon)
 - **Track:** B — Set It and Forget It (pool $1,500: 1st $1,000 / 2nd $500; total buildathon $5,500 in REACT)
 - **Deadline:** **6 Dec 2026 03:00 WIB** (5 Dec 2026 20:00 UTC)
-- **Status:** **DEPLOYED + VERIFIED + E2E PASSED ✅** — RSC `0xE14884a4Db5c97B3ab8d3C4430d6f3aD085E1346` (Lasna) + callback `0x995b75ef4B84E346Dc2fDC73f60554469f24eb9E` (Base Sepolia), both Sourcify exact_match; first 0.01 ETH payment executed 2026-11-20 05:00:40 UTC via natural CRON tick. Details: [DEPLOYMENT.md](DEPLOYMENT.md). `forge build` ✅, `forge test` 19/19 ✅, frontend builds ✅.
+- **Status:** **DEPLOYED + VERIFIED + E2E PASSED ✅** — RSC `0xE14884a4Db5c97B3ab8d3C4430d6f3aD085E1346` (Lasna) + callback `0x995b75ef4B84E346Dc2fDC73f60554469f24eb9E` (Base Sepolia), both Sourcify exact_match; first 0.01 ETH payment executed 2026-11-20 05:00:40 UTC via natural CRON tick. Details: [DEPLOYMENT.md](DEPLOYMENT.md). `forge build` ✅, `forge test` 19/19 ✅, frontend builds ✅. **Frontend live:** https://nattanada.github.io/reactive-recurring-payments/ (built to `gh-pages` branch 20 Nov 2026; enable Pages once in repo Settings → Pages → source `gh-pages`). **Demo funded:** callback topped up +0.05 ETH 20 Nov 2026 (~0.09 ETH = 9 payments). Video script + submission draft ready ([VIDEO_SCRIPT.md](VIDEO_SCRIPT.md), [SUBMISSION_DRAFT.md](SUBMISSION_DRAFT.md)) — video not recorded yet, DoraHacks not submitted yet.
 
 ## What it does
 
@@ -148,9 +148,9 @@ Submission requirements: public repo with all code + README, demo video **< 3 mi
 - [x] Fund both contracts (lREACT via faucet above; ETH on Base Sepolia)
 - [x] Verify both contracts on Sourcify / Reactscan
 - [x] Run the end-to-end test above; confirm reactive tx + callback tx on the explorers
-- [ ] Fill deployed addresses into `frontend/src/main.ts`; deploy the frontend (e.g. GitHub Pages / Vercel) so judges can try it
-- [ ] Record the demo video (< 3 min, live demo: configure → wait for tick → reactive tx → callback tx → beneficiary paid)
-- [ ] Submit the build on DoraHacks before **6 Dec 2026 03:00 WIB**
+- [x] Fill deployed addresses into `frontend/src/main.ts`; deploy the frontend (e.g. GitHub Pages / Vercel) so judges can try it — live at https://nattanada.github.io/reactive-recurring-payments/ (built to `gh-pages` branch; **enable Pages once in repo Settings → Pages → source `gh-pages`**, otherwise the URL 404s)
+- [ ] Record the demo video (< 3 min, live demo: configure → wait for tick → reactive tx → callback tx → beneficiary paid) — script ready in [VIDEO_SCRIPT.md](VIDEO_SCRIPT.md), recording must be done manually by the user
+- [ ] Submit the build on DoraHacks before **6 Dec 2026 03:00 WIB** — draft ready in [SUBMISSION_DRAFT.md](SUBMISSION_DRAFT.md), do not submit before the video is recorded and the user approves
 
 ## References
 
